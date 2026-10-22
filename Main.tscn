@@ -1,0 +1,173 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/Main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/Jogador.gd" id="2_player"]
+[ext_resource type="Script" path="res://scripts/Carro.gd" id="3_car"]
+
+[sub_resource type="RectangleShape2D" id="PlayerShape"]
+size = Vector2(30, 30)
+
+[sub_resource type="RectangleShape2D" id="CarShape"]
+size = Vector2(80, 32)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="Fundo" type="ColorRect" parent="."]
+offset_right = 900.0
+offset_bottom = 600.0
+mouse_filter = 2
+color = Color(0.15, 0.48, 0.22, 1)
+
+[node name="Chegada" type="ColorRect" parent="."]
+offset_right = 900.0
+offset_bottom = 95.0
+mouse_filter = 2
+color = Color(0.08, 0.34, 0.16, 1)
+
+[node name="TextoChegada" type="Label" parent="."]
+offset_left = 390.0
+offset_top = 48.0
+offset_right = 520.0
+offset_bottom = 75.0
+text = "CHEGADA"
+theme_override_font_sizes/font_size = 18
+
+[node name="Estrada1" type="ColorRect" parent="."]
+offset_top = 125.0
+offset_right = 900.0
+offset_bottom = 245.0
+mouse_filter = 2
+color = Color(0.18, 0.19, 0.20, 1)
+
+[node name="Linha1" type="ColorRect" parent="."]
+offset_top = 183.0
+offset_right = 900.0
+offset_bottom = 187.0
+mouse_filter = 2
+color = Color(0.92, 0.82, 0.30, 1)
+
+[node name="Estrada2" type="ColorRect" parent="."]
+offset_top = 325.0
+offset_right = 900.0
+offset_bottom = 445.0
+mouse_filter = 2
+color = Color(0.18, 0.19, 0.20, 1)
+
+[node name="Linha2" type="ColorRect" parent="."]
+offset_top = 383.0
+offset_right = 900.0
+offset_bottom = 387.0
+mouse_filter = 2
+color = Color(0.92, 0.82, 0.30, 1)
+
+[node name="Jogador1" type="CharacterBody2D" parent="."]
+position = Vector2(310, 545)
+script = ExtResource("2_player")
+jogador = 1
+
+[node name="Visual" type="Polygon2D" parent="Jogador1"]
+polygon = PackedVector2Array(-15, -15, 15, -15, 15, 15, -15, 15)
+color = Color(0.1, 0.72, 1, 1)
+
+[node name="Colisao" type="CollisionShape2D" parent="Jogador1"]
+shape = SubResource("PlayerShape")
+
+[node name="Jogador2" type="CharacterBody2D" parent="."]
+position = Vector2(590, 545)
+script = ExtResource("2_player")
+jogador = 2
+
+[node name="Visual" type="Polygon2D" parent="Jogador2"]
+polygon = PackedVector2Array(-15, -15, 15, -15, 15, 15, -15, 15)
+color = Color(1, 0.82, 0.12, 1)
+
+[node name="Colisao" type="CollisionShape2D" parent="Jogador2"]
+shape = SubResource("PlayerShape")
+
+[node name="Carros" type="Node2D" parent="."]
+
+[node name="Carro1" type="Area2D" parent="Carros"]
+position = Vector2(120, 155)
+script = ExtResource("3_car")
+velocidade = 180.0
+direita = true
+[node name="Visual" type="Polygon2D" parent="Carros/Carro1"]
+polygon = PackedVector2Array(-40, -16, 40, -16, 40, 16, -40, 16)
+color = Color(0.92, 0.18, 0.16, 1)
+[node name="Colisao" type="CollisionShape2D" parent="Carros/Carro1"]
+shape = SubResource("CarShape")
+
+[node name="Carro2" type="Area2D" parent="Carros"]
+position = Vector2(700, 215)
+script = ExtResource("3_car")
+velocidade = 140.0
+direita = false
+[node name="Visual" type="Polygon2D" parent="Carros/Carro2"]
+polygon = PackedVector2Array(-40, -16, 40, -16, 40, 16, -40, 16)
+color = Color(0.95, 0.52, 0.12, 1)
+[node name="Colisao" type="CollisionShape2D" parent="Carros/Carro2"]
+shape = SubResource("CarShape")
+
+[node name="Carro3" type="Area2D" parent="Carros"]
+position = Vector2(180, 355)
+script = ExtResource("3_car")
+velocidade = 160.0
+direita = true
+[node name="Visual" type="Polygon2D" parent="Carros/Carro3"]
+polygon = PackedVector2Array(-40, -16, 40, -16, 40, 16, -40, 16)
+color = Color(0.62, 0.25, 0.88, 1)
+[node name="Colisao" type="CollisionShape2D" parent="Carros/Carro3"]
+shape = SubResource("CarShape")
+
+[node name="Carro4" type="Area2D" parent="Carros"]
+position = Vector2(760, 415)
+script = ExtResource("3_car")
+velocidade = 120.0
+direita = false
+[node name="Visual" type="Polygon2D" parent="Carros/Carro4"]
+polygon = PackedVector2Array(-40, -16, 40, -16, 40, 16, -40, 16)
+color = Color(0.12, 0.55, 0.95, 1)
+[node name="Colisao" type="CollisionShape2D" parent="Carros/Carro4"]
+shape = SubResource("CarShape")
+
+[node name="Interface" type="CanvasLayer" parent="."]
+
+[node name="Titulo" type="Label" parent="Interface"]
+offset_left = 20.0
+offset_top = 15.0
+offset_right = 200.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 22
+text = "FROGGER 2D"
+
+[node name="Placar" type="Label" parent="Interface"]
+offset_left = 350.0
+offset_top = 18.0
+offset_right = 590.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 18
+text = "J1: 0     J2: 0"
+
+[node name="Tempo" type="Label" parent="Interface"]
+offset_left = 750.0
+offset_top = 18.0
+offset_right = 880.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 18
+text = "Tempo: 120"
+
+[node name="Ajuda" type="Label" parent="Interface"]
+offset_left = 230.0
+offset_top = 570.0
+offset_right = 700.0
+offset_bottom = 595.0
+text = "Jogador 1: WASD       Jogador 2: SETAS"
+
+[node name="Fim" type="Label" parent="Interface"]
+offset_left = 340.0
+offset_top = 275.0
+offset_right = 570.0
+offset_bottom = 330.0
+theme_override_font_sizes/font_size = 28
+text = ""
